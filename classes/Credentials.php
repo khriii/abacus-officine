@@ -1,0 +1,127 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../vendor/PHPMailer-master/src/Exception.php';
+require __DIR__ . '/../vendor/PHPMailer-master/src/PHPMailer.php';
+require __DIR__ . '/../vendor/PHPMailer-master/src/SMTP.php';
+
+class Credentials
+{
+    static public function doLoginCliente($mail, $password)
+    {
+        require_once __DIR__ . "/DatabaseManager.php";
+
+        $db = new DatabaseManager();
+
+        $stmt = $db->prepare("SELECT password FROM clienti WHERE mail = ?");
+        $stmt->bind_param("s", $mail);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row && password_verify($password, $row["password"])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    static public function doRegisterCliente($mail, $password, $cognome, $nome, $telefono)
+    {
+        require_once __DIR__ . "/DatabaseManager.php";
+
+        $db = new DatabaseManager();
+
+        $stmt = $db->prepare("SELECT codice FROM clienti WHERE mail = ?");
+        $stmt->bind_param("s", $mail);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return "MAIL_EXISTS";
+        }
+
+        $uuid = hash('sha256', $mail . microtime(true) . random_bytes(16));
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $db->prepare("INSERT INTO clienti (uuid, mail, password, cognome, nome, telefono) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $uuid, $mail, $hashedPassword, $cognome, $nome, $telefono);
+
+        require_once "../configs/Config.php";
+
+        $link = "http://" . Config::$domain . "/api/verify_account.php?mail=" . urlencode($mail) . "&uuid=" . urlencode($uuid);
+
+        require_once "../api/send_mail.php";
+        sendMailAPI($mail, "Verifica Account Abacus", "Ecco il tuo link di verifica: " . $link);
+
+
+        try {
+            if ($stmt->execute()) {
+                return true;
+            }
+        } catch (mysqli_sql_exception $e) {
+            if ($e->getCode() == 1062) {
+                return "MAIL_EXISTS";
+            }
+        }
+
+        return false;
+    }
+
+    static public function doLogin($user, $password)
+    {
+        require_once __DIR__ . "/DatabaseManager.php";
+
+        $db = new DatabaseManager();
+
+        $stmt = $db->prepare("SELECT password FROM dipendenti WHERE user = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row && password_verify($password, $row["password"])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    static public function doRegister($user, $password)
+    {
+        require_once __DIR__ . "/DatabaseManager.php";
+
+        $db = new DatabaseManager();
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $db->prepare("INSERT INTO dipendenti (user, password) VALUES (?, ?)");
+        $stmt->bind_param("ss", $user, $hashedPassword);
+
+        try {
+            if ($stmt->execute()) {
+                return true;
+            }
+        } catch (mysqli_sql_exception $e) {
+            if ($e->getCode() == 1062) {
+                return "USER_EXISTS";
+            }
+        }
+
+        return false;
+    }
+
+    static public function doLogout()
+    {
+        if (isset($_SESSION["user"])) {
+            unset($_SESSION["user"]);
+            return true;
+        }
+        return false;
+    }
+}

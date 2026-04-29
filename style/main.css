@@ -1,0 +1,133 @@
+.divServizio {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.divServizioSelectable {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.divServizioSelectable:hover {
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.divServizioSelected {
+    border: 2px solid blue;
+}
+
+.divOfficina {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.divOfficinaSelectable {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.divOfficinaSelectable:hover {
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.divOfficinaSelected {
+    border: 2px solid lime;
+}
+
+.divAccessorioSelectable {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.divAccessorioSelectable:hover {
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 4px;
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.divAccessorioSelected {
+    border: 2px solid rgb(0, 132, 255);
+}
+
+.adminBlock {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    gap: 5px;
+    padding: 8px;
+}
+
+.adminBlock button {
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border: 0px;
+}
+
+.adminBlock .addButton {
+    background-color: rgb(82, 190, 114);
+    color: white;
+}
+
+.adminBlock .removeButton {
+    background-color: rgb(173, 70, 70);
+    color: white;
+}
+
+.divider {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#containerServizi {
+    padding: 20px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#containerAccessori {
+    padding: 20px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#containerOfficine {
+    padding: 20px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.elementContainer {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+

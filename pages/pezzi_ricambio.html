@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Pezzi di ricambio</title>
+    <script src="../js/magazzino.js"></script>
+    <link rel="stylesheet" href="../style/main.css">
+</head>
+
+<body>
+    <h1>Pezzi di ricambio</h1>
+
+    <a href="./servizi.html">servizi</a>
+    <a href="./accessori.html">accessori</a>
+    <a href="./pezzi_ricambio.html">pezzi di ricambio</a>
+    <a href="./officine.html">officine</a>
+
+    <h3>Lista pezzi di ricambio:</h3>
+    <div id="containerPezziRicambio">
+
+    </div>
+
+    <div>
+        <h3>Aggiungi pezzi ricambio</h3>
+        <input type="text" id="descrizionePezziRicambio" placeholder="Descrizione">
+        <input type="text" id="costo_unitarioPezziRicambio" placeholder="Costo unitario">
+        <button id="addPezziRicambioButton">Aggiungi pezzi ricambio</button>
+    </div>
+
+<br>
+    <div>
+        Officina:
+        <select name="officina" id="officine"></select>
+        Pezzo ricambio
+        <select name="pezzo_ricambio" id="pezzi_ricambio"></select>
+        <button id="addPezzoRicambio">Add pezzo</button>
+        <button id="removePezzoRicambio">Remove pezzo</button>
+    </div>
+</body>
+
+</html>

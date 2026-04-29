@@ -1,0 +1,11 @@
+{
+    "name": "stelluti_christian/abacus",
+    "autoload": {
+        "psr-4": {
+            "StellutiChristian\\Abacus\\": "src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
