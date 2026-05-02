@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
+    <title>Login</title>
+    <script type="module" src="../js/login-cliente.js"></script>
     <link rel="stylesheet" href="../style/main.css">
-    <script type="module" src="../js/register-cliente.js"></script>
 </head>
 
 <body>
-
     <div class="navbar">
         <nav>
             <ul class="navbar-left">
@@ -29,34 +28,26 @@
     </div>
 
     <div class="center-container" style="flex-direction: column;">
-        <h1>Registrazione Cliente</h1>
+        <h1>Login Cliente</h1>
 
-        <div class="register-form">
+        <div class="login-form">
             <label for="">Email</label>
-            <input id="email-input" type="text" placeholder="example@mail.com">
-            <br>
-            <label for="">Cognome</label>
-            <input id="surname-input" type="text" placeholder="Rossi">
-            <br>
-            <label for="">Nome</label>
-            <input id="name-input" type="text" placeholder="Mario">
-            <br>
-            <label for="">Numero di telefono</label>
-            <input id="phone-number-input" type="text" placeholder="1234567890">
+            <input id="email-input" type="text">
             <br>
             <label for="">Password</label>
-            <input id="password-input" type="password" placeholder="Inserisci password">
+            <input id="password-input" type="password">
             <br>
 
-            <button class="confirm-button" id="register-btn" type="submit">Registrazione</button>
+            <button class="confirm-button" id="loginBtn" type="submit">Login</button>
             <span class="form-tip">
-                Già registrato? <a style="margin-left: 5px;" href="./login-cliente.html">Accedi
+                Non ti sei ancora registrato? <a style="margin-left: 5px;" href="./register-cliente.html">Registrati
                     qui</a>
             </span>
-
-            <div id="register-message" class="toast"></div>
+            <div id="login-message" class="toast"></div>
         </div>
+
     </div>
+
 
 </body>
 

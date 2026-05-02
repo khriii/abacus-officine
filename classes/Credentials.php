@@ -2,14 +2,14 @@
 
 class Credentials
 {
-    static public function doLoginCliente($mail, $password)
+    static public function doLoginCliente($email, $password)
     {
         require_once __DIR__ . "/DatabaseManager.php";
 
         $db = new DatabaseManager();
 
         $stmt = $db->prepare("SELECT password FROM clienti WHERE mail = ?");
-        $stmt->bind_param("s", $mail);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
 
         $result = $stmt->get_result();

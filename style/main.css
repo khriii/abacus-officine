@@ -259,6 +259,16 @@ body {
     width: 300px;
 }
 
+.login-form {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+}
+
 .confirm-button {
     background-color: rgb(82, 190, 114);
     color: white;
@@ -290,4 +300,13 @@ body {
 .success-toast {
     background-color: rgb(82, 190, 114);
     color: white;
+}
+
+.form-tip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: rgb(128, 126, 126);
+    margin-top: 5px;
 }

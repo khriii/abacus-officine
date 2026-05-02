@@ -8,20 +8,20 @@ if (!isset($_SESSION)) {
 $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 
-$user = $data["user"] ?? null;
+$email = $data["email"] ?? null;
 $password = $data["password"] ?? null;
 
-if (!$user || !$password) {
-    error("Username o password mancanti");
+if (!$email || !$password) {
+    error("Email o password mancanti");
 }
 
 require_once __DIR__ . "/../classes/Credentials.php";
 
-if (Credentials::doLogin($user, $password)) {
-    $_SESSION["user"] = $user;
-    ok(null, "Login eseguito con successo");
+if (Credentials::doLoginCliente($email, $password)) {
+    $_SESSION["email"] = $email;
+    ok(null, "Sei stato loggato con successo");
 } else {
-    error("Login non riuscito");
+    error("Email o password errati");
 }
 
 
