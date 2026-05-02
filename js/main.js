@@ -56,7 +56,7 @@ function createDivServizio(codice, costoOrario, descrizione) {
 
 function createDivOfficina(codice, denominazione, indirizzo) {
     const div = document.createElement("div");
-    div.classList.add("divOfficina");
+    div.classList.add("officina");
     div.innerHTML = `Denominazione: ${denominazione}<br>Indirizzo: ${indirizzo}`;
     div.addEventListener("click", () => loadServiziByOfficina(codice));
     return div;
@@ -151,7 +151,7 @@ function populateInSelect(select, data) {
     emptyOption.value = "";
     emptyOption.innerHTML = "--- Nessun filtro ---";
     select.append(emptyOption);
-    
+
     data.forEach(element => {
         let option = document.createElement("option");
 
@@ -166,12 +166,12 @@ async function handleFilterClick(servizioSelect, accessorioSelect) {
     if (servizioSelect && accessorioSelect) {
         const servizio = servizioSelect.value || null;
         const accessorio = accessorioSelect.value || null;
-        
+
         if (!servizio && !accessorio) {
             alert("Seleziona almeno un filtro");
             return;
         }
-        
+
         const result = await filterOfficine(servizio, accessorio);
         const container = document.querySelector("#officineDiv");
         if (container) {

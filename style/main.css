@@ -224,3 +224,23 @@ body {
 #filterButton:hover {
     background-color: rgb(61, 144, 86);
 }
+
+.officina {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+.servizio {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
