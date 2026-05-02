@@ -22,14 +22,14 @@ class Credentials
         return false;
     }
 
-    static public function doRegisterCliente($mail, $password, $cognome, $nome, $telefono)
+    static public function doRegisterCliente($email, $password, $surname, $name, $phone_number)
     {
         require_once __DIR__ . "/DatabaseManager.php";
 
         $db = new DatabaseManager();
 
         $stmt = $db->prepare("SELECT codice FROM clienti WHERE mail = ?");
-        $stmt->bind_param("s", $mail);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -37,19 +37,17 @@ class Credentials
             return "MAIL_EXISTS";
         }
 
-        $uuid = hash('sha256', $mail . microtime(true) . random_bytes(16));
+        $uuid = hash('sha256', $email . microtime(true) . random_bytes(16));
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $db->prepare("INSERT INTO clienti (uuid, mail, password, cognome, nome, telefono, verified) VALUES (?, ?, ?, ?, ?, ?, 0)");
-        $stmt->bind_param("ssssss", $uuid, $mail, $hashedPassword, $cognome, $nome, $telefono);
+        $stmt = $db->prepare("INSERT INTO clienti (mail, cognome, nome, password, telefono, uuid, verified) VALUES (?, ?, ?, ?, ?, ?, 0)");
+        $stmt->bind_param("ssssss", $email, $surname, $name, $hashedPassword, $phone_number, $uuid);
 
         require_once __DIR__ . "/../configs/Config.php";
-
-        $link = "http://" . Config::$domain . "/api/verify_account.php?mail=" . urlencode($mail) . "&uuid=" . urlencode($uuid);
-
+        $link = "http://" . Config::$domain . "/api/verify_account.php?mail=" . urlencode($email) . "&uuid=" . urlencode($uuid);
         require_once __DIR__ . "/../api/send_mail.php";
-        //sendMailAPI($mail, "Verifica Account Abacus", "Ecco il tuo link di verifica: " . $link);
+        sendMailAPI($email, "Verifica Account Abacus", "Ecco il tuo link di verifica: " . $link);
 
 
         try {

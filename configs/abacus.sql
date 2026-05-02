@@ -67,7 +67,7 @@ CREATE TABLE `clienti` (
   `nome` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `telefono` varchar(16) NOT NULL,
-  `uuid` varchar(32) NOT NULL,
+  `uuid` varchar(64) NOT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

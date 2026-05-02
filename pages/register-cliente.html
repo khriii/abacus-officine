@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione</title>
+    <link rel="stylesheet" href="../style/main.css">
+    <script type="module" src="../js/register-cliente.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <nav>
+            <ul class="navbar-left">
+                <li><a href="../index.html">Abacus</a></li>
+                <li><a href="./officine.html">Officine</a></li>
+                <li><a href="./servizi.html">Servizi</a></li>
+                <li><a href="./accessori.html">Accessori</a></li>
+                <li><a href="./pezzi_ricambio.html">Pezzi di ricambio</a></li>
+            </ul>
+
+            <ul class="navbar-right">
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./login.html">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="center-container" style="flex-direction: column;">
+        <h1>Registrazione cliente</h1>
+
+        <div class="register-form">
+            <label for="">Email</label>
+            <input id="email-input" type="text" placeholder="example@mail.com">
+            <br>
+            <label for="">Cognome</label>
+            <input id="surname-input" type="text" placeholder="Rossi">
+            <br>
+            <label for="">Nome</label>
+            <input id="name-input" type="text" placeholder="Mario">
+            <br>
+            <label for="">Numero di telefono</label>
+            <input id="phone-number-input" type="text" placeholder="1234567890">
+            <br>
+            <label for="">Password</label>
+            <input id="password-input" type="password" placeholder="Inserisci password">
+            <br>
+
+            <button class="confirm-button" id="register-btn" type="submit">Registrazione</button>
+
+            <div id="register-message" class="toast"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

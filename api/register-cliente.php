@@ -17,26 +17,26 @@ if ($json && $data === null) {
     error("Formato JSON non valido");
 }
 
-$mail = trim($data["mail"] ?? '');
+$email = trim($data["email"] ?? '');
 $password = $data["password"] ?? '';
-$cognome = trim($data["cognome"] ?? '');
-$nome = trim($data["nome"] ?? '');
-$telefono = trim($data["numero_telefono"] ?? '');
+$surname = trim($data["surname"] ?? '');
+$name = trim($data["name"] ?? '');
+$phone_number = trim($data["phone_number"] ?? '');
 
-if ($mail === '' || $password === '' || $cognome === '' || $nome === '' || $telefono === '') {
+if ($email === '' || $password === '' || $surname === '' || $name === '' || $phone_number === '') {
     error("Dati mancanti per la registrazione del cliente");
 }
 
-if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     error("Il formato dell'indirizzo email non è valido");
 }
 
 require_once __DIR__ . "/../classes/Credentials.php";
 
 try {
-    $risultato = Credentials::doRegisterCliente($mail, $password, $cognome, $nome, $telefono);
+    $risultato = Credentials::doRegisterCliente($email, $password, $surname, $name, $phone_number);
 
-    if ($risultato === "SUCCESS") {
+    if ($risultato === true) {
         ok(null, "Registrazione cliente eseguita con successo");
     } elseif ($risultato === "MAIL_EXISTS") {
         error("Questa email è già registrata.");

@@ -5,7 +5,8 @@ export const API_ENDPOINTS = {
     GET_ALL_OFFICINE: "/get_officine.php",
     GET_ALL_SERVIZI: "/get_all_servizi.php",
     GET_ALL_ACCESSORI: "/get_all_accessori.php",
-    GET_ALL_PEZZI_RICAMBIO: "/get_all_pezziricambio.php"
+    GET_ALL_PEZZI_RICAMBIO: "/get_all_pezziricambio.php",
+    REGISTER_CLIENTE: "/register-cliente.php"
 };
 
 export async function fetchPost(endpoint, options = {}) {
@@ -14,7 +15,7 @@ export async function fetchPost(endpoint, options = {}) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(options.body || {})
+        body: JSON.stringify(options || {})
     });
     return await response.json();
 }
