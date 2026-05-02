@@ -5,10 +5,12 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-if (isset($_SESSION["user"])) {
-    ok(null, "e' loggato");
+require_once __DIR__ . "/../classes/Credentials.php";
+
+if (Credentials::doLogoutCliente()) {
+    ok(null, "Logout eseguito con successo");
 } else {
-    error("non e' loggato");
+    error("Logout non riuscito");
 }
 
 

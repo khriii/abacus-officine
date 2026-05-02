@@ -7,7 +7,9 @@ export const API_ENDPOINTS = {
     GET_ALL_ACCESSORI: "/get_all_accessori.php",
     GET_ALL_PEZZI_RICAMBIO: "/get_all_pezziricambio.php",
     REGISTER_CLIENTE: "/register-cliente.php",
-    LOGIN_CLIENTE: "/login-cliente.php"
+    LOGIN_CLIENTE: "/login-cliente.php",
+    CHECK_LOGIN_STATUS: "/check-login-status.php",
+    LOGOUT_CLIENTE: "/logout-cliente.php"
 };
 
 export async function fetchPost(endpoint, options = {}) {

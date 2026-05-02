@@ -107,10 +107,10 @@ class Credentials
         return false;
     }
 
-    static public function doLogout()
+    static public function doLogoutCliente()
     {
-        if (isset($_SESSION["user"])) {
-            unset($_SESSION["user"]);
+        if (isset($_SESSION["email"])) {
+            unset($_SESSION["email"]);
             return true;
         }
         return false;

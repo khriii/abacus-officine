@@ -1,4 +1,4 @@
-import { API_ENDPOINTS, fetchPost } from "./configs/api-configs.js";
+import { API_ENDPOINTS, fetchGet, fetchPost } from "./configs/api-configs.js";
 
 document.addEventListener("DOMContentLoaded", main);
 
@@ -41,7 +41,38 @@ async function handleClickLogin() {
     }
 }
 
+async function checkLoginStatus() {
+    const response = await fetchGet(API_ENDPOINTS.CHECK_LOGIN_STATUS);
+
+    if (response.success === false) {
+        return false;
+    }
+    return response.data.isLoggedIn;
+}
+
 async function main() {
+    const isLoggedIn = await checkLoginStatus();
+
+
+    const loginMessageDiv = document.getElementById("login-message-div");
+
+    if (!loginMessageDiv) {
+        console.error("Login message element not found");
+        return;
+    }
+
+    // If is not logged in, show the login form, otherwise show a message that the user is already logged in
+    if (isLoggedIn) {
+        loginMessageDiv.innerHTML = `<p>Sei già loggato. Se vuoi accedere con un altro account, effettua il <a href="./logout-cliente.html" class="logout-link">Logout</a> prima.</p>`;
+
+
+        const loginForm = document.querySelector(".login-form");
+        if (loginForm) {
+            loginForm.style.display = "none";
+        }
+        return;
+    }
+
     const loginBtn = document.getElementById("loginBtn");
 
     if (!loginBtn) {

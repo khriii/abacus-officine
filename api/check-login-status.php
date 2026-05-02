@@ -5,14 +5,15 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-require_once __DIR__ . "/../classes/Credentials.php";
-
-if (Credentials::doLogout()) {
-    ok(null, "Logout eseguito con successo");
-} else {
-    error("Logout non riuscito");
+try {
+    if (isset($_SESSION["email"])) {
+        ok(["isLoggedIn" => true], "Sei già loggato");
+    } else {
+        ok(["isLoggedIn" => false], "Non sei ancora loggato");
+    }
+} catch (Exception $e) {
+    error("Errore durante il controllo dello stato di login: " . $e->getMessage());
 }
-
 
 // Methods
 function error($msg)
