@@ -17,7 +17,7 @@
                 <li><a href="./officine.html">Officine</a></li>
                 <li><a href="./servizi.html">Servizi</a></li>
                 <li><a href="./accessori.html">Accessori</a></li>
-                <li><a href="./pezzi_ricambio.html">Pezzi di ricambio</a></li>
+                <li><a href="./pezzi-ricambio.html">Pezzi di ricambio</a></li>
             </ul>
 
             <ul class="navbar-right">
@@ -36,20 +36,22 @@
 
     <div>
         <h3>Aggiungi pezzi ricambio</h3>
-        <input type="text" id="descrizionePezziRicambio" placeholder="Descrizione">
-        <input type="text" id="costo_unitarioPezziRicambio" placeholder="Costo unitario">
-        <button id="addPezziRicambioButton">Aggiungi pezzi ricambio</button>
+        <input type="text" id="descrizione-pezzo-ricambio-input" placeholder="Descrizione">
+        <input type="text" id="costo-unitario-pezzo-ricambio-input" placeholder="Costo unitario">
+        <button id="add-new-pezzo-ricambio-btn">Aggiungi nuovo pezzo di ricambio</button>
     </div>
 
     <br>
     <div>
         Officina:
-        <select name="officina" id="officine"></select>
+        <select name="officina" id="officine-select"></select>
         Pezzo ricambio
-        <select name="pezzo_ricambio" id="pezzi_ricambio"></select>
-        <button id="addPezzoRicambio">Add pezzo</button>
-        <button id="removePezzoRicambio">Remove pezzo</button>
+        <select name="pezzo_ricambio" id="pezzi-ricambio-select"></select>
+        <button id="add-pezzo-ricambio-btn">Add pezzo</button>
+        <button id="remove-pezzo-ricambio-btn">Remove pezzo</button>
     </div>
+
+    <div class="toast" id="toast"></div>
 </body>
 
 </html>

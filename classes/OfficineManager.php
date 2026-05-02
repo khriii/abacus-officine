@@ -157,6 +157,52 @@ class OfficineManager
         return true;
     }
 
+    public static function hasPezzoRicambioInOfficina($codice_officina, $codice_pezzo_ricambio)
+    {
+        require_once __DIR__ . "/DatabaseManager.php";
+
+        $dbManager = new DatabaseManager;
+        $query = "SELECT 1 FROM officine_pezzi_ricambio WHERE codice_officina = '$codice_officina' AND codice_pezzo_ricambio = '$codice_pezzo_ricambio' LIMIT 1";
+        $result = $dbManager->query($query);
+
+        if (!$result) {
+            return false;
+        }
+
+        return $result->num_rows > 0;
+    }
+
+    public static function bindPezzoRicambioToOfficina($codice_officina, $codice_pezzo_ricambio, $quantita = 1)
+    {
+        if (self::hasPezzoRicambioInOfficina($codice_officina, $codice_pezzo_ricambio)) {
+            return false;
+        }
+
+        require_once __DIR__ . "/DatabaseManager.php";
+
+        $dbManager = new DatabaseManager;
+
+        $result = $dbManager->query("INSERT INTO officine_pezzi_ricambio (codice_officina, codice_pezzo_ricambio, quantita) VALUES ('$codice_officina', '$codice_pezzo_ricambio', '$quantita')");
+        if (!$result) {
+            return false;
+        }
+        return true;
+    }
+
+    public static function removePezzoRicambioFromOfficina($codice_officina, $codice_pezzo_ricambio)
+    {
+        require_once __DIR__ . "/DatabaseManager.php";
+
+        $dbManager = new DatabaseManager;
+        $result = $dbManager->query("DELETE FROM officine_pezzi_ricambio WHERE codice_officina = '$codice_officina' AND codice_pezzo_ricambio = '$codice_pezzo_ricambio'");
+
+        if ($result === false) {
+            return false;
+        }
+
+        return $dbManager->getConnection()->affected_rows;
+    }
+
     public static function filter($servizio, $accessorio)
     {
         require_once __DIR__ . "/DatabaseManager.php";

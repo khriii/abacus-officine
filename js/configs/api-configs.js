@@ -9,7 +9,10 @@ export const API_ENDPOINTS = {
     REGISTER_CLIENTE: "/register-cliente.php",
     LOGIN_CLIENTE: "/login-cliente.php",
     CHECK_LOGIN_STATUS: "/check-login-status.php",
-    LOGOUT_CLIENTE: "/logout-cliente.php"
+    LOGOUT_CLIENTE: "/logout-cliente.php",
+    ADD_PEZZO_RICAMBIO: "/add-pezzo-ricambio.php",
+    ADD_PEZZO_RICAMBIO_TO_OFFICINA: "/add-pezzo-ricambio-to-officina.php",
+    REMOVE_PEZZO_RICAMBIO_FROM_OFFICINA: "/remove-pezzo-ricambio-from-officina.php"
 };
 
 export async function fetchPost(endpoint, options = {}) {
