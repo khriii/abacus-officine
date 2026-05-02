@@ -1,11 +1,4 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require __DIR__ . '/../vendor/PHPMailer-master/src/Exception.php';
-require __DIR__ . '/../vendor/PHPMailer-master/src/PHPMailer.php';
-require __DIR__ . '/../vendor/PHPMailer-master/src/SMTP.php';
 
 class Credentials
 {
@@ -48,15 +41,15 @@ class Credentials
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $db->prepare("INSERT INTO clienti (uuid, mail, password, cognome, nome, telefono) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO clienti (uuid, mail, password, cognome, nome, telefono, verified) VALUES (?, ?, ?, ?, ?, ?, 0)");
         $stmt->bind_param("ssssss", $uuid, $mail, $hashedPassword, $cognome, $nome, $telefono);
 
-        require_once "../configs/Config.php";
+        require_once __DIR__ . "/../configs/Config.php";
 
         $link = "http://" . Config::$domain . "/api/verify_account.php?mail=" . urlencode($mail) . "&uuid=" . urlencode($uuid);
 
-        require_once "../api/send_mail.php";
-        sendMailAPI($mail, "Verifica Account Abacus", "Ecco il tuo link di verifica: " . $link);
+        require_once __DIR__ . "/../api/send_mail.php";
+        //sendMailAPI($mail, "Verifica Account Abacus", "Ecco il tuo link di verifica: " . $link);
 
 
         try {

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", main);
 
-let emailInput;
+let mailInput;
 let cognomeInput;
 let nomeInput;
 let numeroTelefonoInput;
