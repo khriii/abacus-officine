@@ -1,5 +1,5 @@
 // localhost should be replaced with the correct domain
-export const API_BASE_URL = "http://localhost/abacus-officine/api";
+export const API_BASE_URL = "./api";
 
 export const API_ENDPOINTS = {
     GET_ALL_OFFICINE: "/get_officine.php",
